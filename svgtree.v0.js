@@ -22,24 +22,10 @@ function getOrthogonal( a, b ) {  // length == 1
     let l = Math.sqrt( 1 + kx * kx );
     return [ kx / l, 1/l ];
 }
-function getParallell( a, b ) {
-    return getPoint( a,b, 1/getLength(a,b) );
-}
-function getBranch( a, b, k, angle, length ) {
-    let ortho = getOrthogonal( a, b );
-    let para  = getParallell( a, b );
-    let ap    = getPoint( a, b, k );
-    let akortho = Math.sin( angle* Math.PI/180 ) * length; 
-    let akpara = Math.cos( angle* Math.PI/180 ) * length; 
-    let ab    = getPoint( a, b, k );
-    let ab    = addVec( ab, para, akpara );
-    let ab    = addVec( ab, ortho, akortho );
-    return [ap, ab ];
-}
 function drawTree( a, b, color, depth ) {
+    if ( depth == 0 ) return "";
     let out = drawLine( a, b, color, depth );
-    if ( depth == 0 ) return out;
-
+    
     // mathematical nastiness
     let length = getLength( a, b ); 
     let orth   = getOrthogonal( a, b );  // length == 1
@@ -54,13 +40,12 @@ function drawTree( a, b, color, depth ) {
     bb[X] = bb[X] - length * 0.3 * orth[X];
     bb[Y] = bb[Y] - length * 0.3 * orth[Y];
     ////////////////////
-
     out += drawTree( bp, ap, "red",  depth -1 );
     out += drawTree( bb, ab, "blue", depth -1 );
     return out;
 }
 let a = [ 100, 50 ]; 
 let b = [ 100, 250 ];
-let tree = drawTree( a, b , "brown", 6 );
-console.log( '<svg height="400" width="400"> ' + tree + ' </svg>' );
+let tree = drawTree( a, b , "brown", 3 );
+console.log( '<svg height="400" width="400">\n' + tree + ' </svg>' );
 
