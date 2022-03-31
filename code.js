@@ -25,7 +25,16 @@ function getOrthogonal( a, b ) {  // length == 1
 function getParallell( a, b ) {
     return getPoint( a,b, 1/getLength(a,b) );
 }
-function getBranch( a, b, angle, length ) {
+function getBranch( a, b, k, angle, length ) {
+    let ortho = getOrthogonal( a, b );
+    let para  = getParallell( a, b );
+    let ap    = getPoint( a, b, k );
+    let akortho = Math.sin( angle* Math.PI/180 ) * length; 
+    let akpara = Math.cos( angle* Math.PI/180 ) * length; 
+    let ab    = getPoint( a, b, k );
+    let ab    = addVec( ab, para, akpara );
+    let ab    = addVec( ab, ortho, akortho );
+    return [ap, ab ];
 }
 function drawTree( a, b, color, depth ) {
     let out = drawLine( a, b, color, depth );
