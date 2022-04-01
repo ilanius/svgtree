@@ -42,5 +42,13 @@ function drawTree( a, b, color, depth ) {
 }
 let a = [ 100, 250 ];
 let b = [ 100, 50 ]; 
-let tree = drawTree( a, b , "brown", 4 );
+/* ************************************ */
+/* Möjliga förbättringar:
+/*  stoppa in vinklar i anrop
+/* till exempel drawtree( a,b, vinkel1, vinkel1, färger, djup );
+/* look up table för matris beräkning
+/* skapa index.htm med träd
+/* skapa en skugg med träd på olika avstånd
+/* ************************************* */
+let tree = drawTree( a, b , "brown", 4 );  
 console.log( '<svg height="400" width="400">\n' + tree + ' </svg>' );
