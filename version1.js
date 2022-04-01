@@ -50,5 +50,5 @@ let b = [ 100, 50 ];
 /* skapa index.htm med träd
 /* skapa en skugg med träd på olika avstånd
 /* ************************************* */
-let tree = drawTree( a, b , "brown", 4 );  
+let tree = drawTree( a, b , "brown", 5 );  
 console.log( '<svg height="400" width="400">\n' + tree + ' </svg>' );
