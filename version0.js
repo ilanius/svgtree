@@ -25,13 +25,18 @@ function getOrthogonal( a, b ) {  // length == 1
 function drawTree( a, b, color, depth ) {
     if ( depth == 0 ) return "";
     let out = drawLine( a, b, color, depth );
-    
-    // mathematical nastiness
+    // Calculating points for branches.
+    // ap = a' <=> a prime in math notation 
+    // bp = b' 
+    // ab = a" <=> a bis in math notation
+    // bb = b"
     let length = getLength( a, b ); 
-    let orth   = getOrthogonal( a, b );  // length == 1
+    
+    // orth i a line that makes a right angle to the line drawn from a to b
+    let orth   = getOrthogonal( a, b );  
     // branch one
-    let ap    = getPoint( a, b, 0.8 );
-    let bp    = getPoint( a, b, 0.2 );
+    let ap    = getPoint( a, b, 0.8 ); // 0 means ap = a, 1 ap=b, 0.8 close to b
+    let bp    = getPoint( a, b, 0.2 ); // close to a
     bp[X] = bp[X] + length * 0.4 * orth[X];
     bp[Y] = bp[Y] + length * 0.4 * orth[Y];
     // branch two
